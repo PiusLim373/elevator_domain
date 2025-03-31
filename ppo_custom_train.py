@@ -48,7 +48,7 @@ BATCH_SIZE = 256
 TRAIN_EVERY_N_STEPS = 2048
 N_EPOCH = 20
 N_EPISODES = 3000
-CHECKPOINT_DIR = "debug/"
+CHECKPOINT_DIR = "saves/"
 
 ################################################### Model Definition
 # copy paste all ppo.ppo_network.py stuff here
