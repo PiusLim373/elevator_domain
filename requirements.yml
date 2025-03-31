@@ -1,0 +1,13 @@
+name: cs5446-elevator-domain
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip:
+    - gymnasium
+    - numpy
+    - torch
+    - ray[rllib,tune,serve]
+    - matplotlib
+    - aiohttp_cors==0.7.0
+    - git+https://github.com/tasbolat1/pyRDDLGym.git
