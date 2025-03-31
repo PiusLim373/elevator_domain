@@ -63,8 +63,8 @@ class ActorNetwork(nn.Module):
         learning_rate,
         fc1_dims=128,
         fc2_dims=128,
-        fc3_dims=128,
-        fc4_dims=128,
+        # fc3_dims=128,
+        # fc4_dims=128,
         chkpt_dir="saves",
     ):
         super(ActorNetwork, self).__init__()
@@ -77,11 +77,11 @@ class ActorNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(fc1_dims, fc2_dims),
             nn.ReLU(),
-            nn.Linear(fc2_dims, fc3_dims),
-            nn.ReLU(),
-            nn.Linear(fc3_dims, fc4_dims),
-            nn.ReLU(),
-            nn.Linear(fc4_dims, n_actions),
+            # nn.Linear(fc2_dims, fc3_dims),
+            # nn.ReLU(),
+            # nn.Linear(fc3_dims, fc4_dims),
+            # nn.ReLU(),
+            nn.Linear(fc2_dims, n_actions),
             nn.Softmax(dim=-1),
         )
 
@@ -117,7 +117,14 @@ class ActorNetwork(nn.Module):
 # The Critic (value) network
 class CriticNetwork(nn.Module):
     def __init__(
-        self, input_dims, learning_rate, fc1_dims=128, fc2_dims=128, fc3_dims=128, fc4_dims=128, chkpt_dir="saves"
+        self,
+        input_dims,
+        learning_rate,
+        fc1_dims=128,
+        fc2_dims=128,
+        # fc3_dims=128,
+        # fc4_dims=128,
+        chkpt_dir="saves",
     ):
         super(CriticNetwork, self).__init__()
         self.checkpoint_file = os.path.join(chkpt_dir, "critic_torch_ppo.pth")
@@ -129,11 +136,11 @@ class CriticNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(fc1_dims, fc2_dims),
             nn.ReLU(),
-            nn.Linear(fc2_dims, fc3_dims),
-            nn.ReLU(),
-            nn.Linear(fc3_dims, fc4_dims),
-            nn.ReLU(),
-            nn.Linear(fc4_dims, 1),
+            # nn.Linear(fc2_dims, fc3_dims),
+            # nn.ReLU(),
+            # nn.Linear(fc3_dims, fc4_dims),
+            # nn.ReLU(),
+            nn.Linear(fc2_dims, 1),
         )
 
         # adam optimizer with learning rate
