@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 import tqdm
 from pyRDDLGym.Elevator import Elevator
 from IPython.display import Image, display, clear_output
+from ppo.hyperparams import *
 
 ################################################### Environment Initialization
 ## IMPORTANT: Do not change the instance of the environment.
@@ -36,18 +37,18 @@ print(f"Observation space size for the discrete Elevator Environment: {len(env.d
 
 ################################################### Hyperparameters
 
-INPUT_DIMS = 13
-ACTIONS_DIMS = 6
-LEARNING_RATE = 0.0003
-DISCOUNT = 0.99
-GAE_LAMBDA = 0.95
-CRITIC_LOSS_COEFF = 0.5
-ENTROPY_COEFF = 0.01
-PPO_CLIP = 0.2
-BATCH_SIZE = 256
-TRAIN_EVERY_N_STEPS = 2048
-N_EPOCH = 20
-N_EPISODES = 3000
+# INPUT_DIMS = 13
+# ACTIONS_DIMS = 6
+# LEARNING_RATE = 3e-4
+# DISCOUNT = 0.99
+# GAE_LAMBDA = 0.95
+# CRITIC_LOSS_COEFF = 0.5
+# ENTROPY_COEFF = 0.02
+# PPO_CLIP = 0.2
+# BATCH_SIZE = 512
+# TRAIN_EVERY_N_STEPS = 1024
+# N_EPOCH = 15
+# N_EPISODES = 3000
 CHECKPOINT_DIR = "saves/"
 
 ################################################### Model Definition

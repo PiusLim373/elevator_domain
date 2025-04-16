@@ -3,23 +3,31 @@ import os
 import numpy as np
 from pyRDDLGym.Elevator import Elevator
 from ppo.ppo_agent import Agent
-
+from ppo.hyperparams import *
+# from ppo_custom_train import INPUT_DIMS, ACTIONS_DIMS, LEARNING_RATE, DISCOUNT, GAE_LAMBDA, CRITIC_LOSS_COEFF, ENTROPY_COEFF, PPO_CLIP, BATCH_SIZE, N_EPOCH
 # Configuration
-RENDER = False
-CHECKPOINT_DIR = "saves/"
+RENDER = True
+CHECKPOINT_DIR = "model/"
 USE_AUTOSAVE = True  # Set to True if you want to load autosave
 
 ACTOR_MODEL = "sample_actor_torch_ppo.pth"  # Change this if you need to load different model
 CRITIC_MODEL = "sample_critic_torch_ppo.pth"  # Change this if you need to load different model
+# actor_model_path = input("Input Actor Model Path: \n")
+# critic_model_path = input("Input Critic Model Path: \n")
+# # Determine which checkpoint files to load
+# if actor_model_path and critic_model_path:
+#     ACTOR_CHECKPOINT = actor_model_path
+#     CRITIC_CHECKPOINT = critic_model_path
+# else: 
+#     if USE_AUTOSAVE:
+#         ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_actor_torch_ppo.pth")
+#         CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_critic_torch_ppo.pth")
+#     else:
+#         ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, ACTOR_MODEL)
+#         CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, CRITIC_MODEL)
 
-# Determine which checkpoint files to load
-if USE_AUTOSAVE:
-    ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_actor_torch_ppo.pth")
-    CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_critic_torch_ppo.pth")
-else:
-    ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, ACTOR_MODEL)
-    CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, CRITIC_MODEL)
-
+ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, ACTOR_MODEL)
+CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, CRITIC_MODEL)
 # Initialize environment and agent
 env = Elevator(is_render=RENDER, instance=5)
 env_features = list(env.observation_space.keys())
@@ -31,16 +39,16 @@ def convert_state_to_list(state, env_features):
     return out
 
 agent = Agent(
-    input_dims=13,
-    action_dims=6,
-    learning_rate=0.0003,
-    discount=0.99,
-    gae_lambda=0.95,
-    critic_loss_coeff=0.5, 
-    entropy_coeff=0.01,
-    ppo_clip=0.2,
-    batch_size=256,
-    n_epoch=15,
+    input_dims=INPUT_DIMS,
+    action_dims=ACTIONS_DIMS,
+    learning_rate=LEARNING_RATE,
+    discount=DISCOUNT,
+    gae_lambda=GAE_LAMBDA,
+    critic_loss_coeff=CRITIC_LOSS_COEFF, 
+    entropy_coeff=0,
+    ppo_clip=PPO_CLIP,
+    batch_size=BATCH_SIZE,
+    n_epoch=N_EPOCH,
     checkpoint_dir=CHECKPOINT_DIR,
 )
 
