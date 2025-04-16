@@ -62,8 +62,8 @@ class ActorNetwork(nn.Module):
         input_dims,
         learning_rate,
         fc1_dims=128,
-        fc2_dims=128,
-        # fc3_dims=128,
+        fc2_dims=64,
+        fc3_dims=32,
         # fc4_dims=128,
         chkpt_dir="saves",
     ):
@@ -77,11 +77,11 @@ class ActorNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(fc1_dims, fc2_dims),
             nn.ReLU(),
-            # nn.Linear(fc2_dims, fc3_dims),
-            # nn.ReLU(),
+            nn.Linear(fc2_dims, fc3_dims),
+            nn.ReLU(),
             # nn.Linear(fc3_dims, fc4_dims),
             # nn.ReLU(),
-            nn.Linear(fc2_dims, n_actions),
+            nn.Linear(fc3_dims, n_actions),
             nn.Softmax(dim=-1),
         )
 
@@ -121,8 +121,8 @@ class CriticNetwork(nn.Module):
         input_dims,
         learning_rate,
         fc1_dims=128,
-        fc2_dims=128,
-        # fc3_dims=128,
+        fc2_dims=64,
+        fc3_dims=32,
         # fc4_dims=128,
         chkpt_dir="saves",
     ):
@@ -136,11 +136,11 @@ class CriticNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(fc1_dims, fc2_dims),
             nn.ReLU(),
-            # nn.Linear(fc2_dims, fc3_dims),
-            # nn.ReLU(),
+            nn.Linear(fc2_dims, fc3_dims),
+            nn.ReLU(),
             # nn.Linear(fc3_dims, fc4_dims),
             # nn.ReLU(),
-            nn.Linear(fc2_dims, 1),
+            nn.Linear(fc3_dims, 1),
         )
 
         # adam optimizer with learning rate
