@@ -4,27 +4,14 @@ import numpy as np
 from pyRDDLGym.Elevator import Elevator
 from ppo.ppo_agent import Agent
 from ppo.hyperparams import *
-# from ppo_custom_train import INPUT_DIMS, ACTIONS_DIMS, LEARNING_RATE, DISCOUNT, GAE_LAMBDA, CRITIC_LOSS_COEFF, ENTROPY_COEFF, PPO_CLIP, BATCH_SIZE, N_EPOCH
+
 # Configuration
 RENDER = True
 CHECKPOINT_DIR = "model/"
 USE_AUTOSAVE = True  # Set to True if you want to load autosave
 
-ACTOR_MODEL = "sample_actor_torch_ppo.pth"  # Change this if you need to load different model
-CRITIC_MODEL = "sample_critic_torch_ppo.pth"  # Change this if you need to load different model
-# actor_model_path = input("Input Actor Model Path: \n")
-# critic_model_path = input("Input Critic Model Path: \n")
-# # Determine which checkpoint files to load
-# if actor_model_path and critic_model_path:
-#     ACTOR_CHECKPOINT = actor_model_path
-#     CRITIC_CHECKPOINT = critic_model_path
-# else: 
-#     if USE_AUTOSAVE:
-#         ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_actor_torch_ppo.pth")
-#         CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, "autosave_critic_torch_ppo.pth")
-#     else:
-#         ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, ACTOR_MODEL)
-#         CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, CRITIC_MODEL)
+ACTOR_MODEL = "actor_model.pth"  # Change this if you need to load different model
+CRITIC_MODEL = "critic_model.pth"  # Change this if you need to load different model
 
 ACTOR_CHECKPOINT = os.path.join(CHECKPOINT_DIR, ACTOR_MODEL)
 CRITIC_CHECKPOINT = os.path.join(CHECKPOINT_DIR, CRITIC_MODEL)
